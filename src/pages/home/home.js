@@ -10,9 +10,9 @@ export const info = {
       minor: "Semiconductor Technology"
     },
     social: {
-      linkedin: "https://linkedin.com/in/yourprofile",
-      instagram: "https://instagram.com/yourhandle",
-      github: "https://github.com/yourusername",
+      linkedin: "https://www.linkedin.com/in/kushal-s-rv-university/",
+      instagram: "https://instagram.com/kushal_sathyanarayan",
+      github: "https://github.com/kushal-script",
     },
     stats: {
       projectsCompleted: 2,

@@ -87,7 +87,7 @@ html, body {
 
 .description-section {
     flex: 1;
-    padding: 140px 100px 60px 80px; 
+    padding: 100px 100px 60px 80px; 
     display: flex;
     flex-direction: column;
     justify-content: center;

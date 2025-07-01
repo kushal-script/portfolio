@@ -3,6 +3,7 @@ import { info } from '../../pages/home/home.js';
 import './home.css';
 import image from '../../assets/images/me.png';
 import { FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 
 // Typing Animation component (unchanged)
 const TypingAnimation = ({ text }) => {
@@ -91,6 +92,7 @@ const Home = () => {
 
     return (
         <div className="home-wrapper">
+            <Navbar />
             <div className="home-container">
                 <div className="image-section">
                     <img src={image} alt="Kushal Sathyanarayan" className="profile-image" />
