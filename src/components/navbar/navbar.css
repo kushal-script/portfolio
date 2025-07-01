@@ -21,7 +21,7 @@
     padding: 0;
 }
 
-.nav-links li a {
+.nav-links li button {
     color: #ffffff;
     text-decoration: none;
     font-weight: 500;
@@ -29,9 +29,12 @@
     letter-spacing: 0.5px;
     position: relative;
     transition: color 0.3s ease, transform 0.3s ease;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.nav-links li a::after {
+.nav-links li button::after {
     content: '';
     position: absolute;
     left: 0;
@@ -44,11 +47,91 @@
     transition: transform 0.3s ease;
 }
 
-.nav-links li a:hover {
+.nav-links li button:hover {
     color: #ff4d4d;
     transform: translateY(-2px); 
 }
 
-.nav-links li a:hover::after {
+.nav-links li button:hover::after {
+    transform: scaleX(1); 
+}
+
+.navbarPages {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    z-index: 60;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 24px rgba(29, 29, 29, 0.452); 
+}
+
+.navbar-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-name {
+    color: #ff4d4d;
+    font-weight: 700;
+    font-size: 1.2em;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.navbar-name:hover {
+    transform: scale(1.05);
+}
+
+.nav-links-pages {
+    list-style: none;
+    display: flex;
+    gap: 80px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links-pages li button {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-links-pages li button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff4d4d;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-links-pages li button:hover {
+    color: #ff4d4d;
+    transform: translateY(-2px); 
+}
+
+.nav-links-pages li button:hover::after {
     transform: scaleX(1); 
 }

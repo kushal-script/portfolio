@@ -4,6 +4,7 @@ import './home.css';
 import image from '../../assets/images/me.png';
 import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { Navbar } from '../../components/navbar/navbar.jsx';
+import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
 
 const TypingAnimation = ({ text, onComplete }) => {
     const [displayedText, setDisplayedText] = useState('');
@@ -100,7 +101,7 @@ const IntroScreen = ({ onComplete }) => {
     );
 };
 
-const Home = () => {
+const Home = ({ onNavClick }) => {
     const [showIntro, setShowIntro] = useState(true);
     const [introMinimizing, setIntroMinimizing] = useState(false);
     const [introHidden, setIntroHidden] = useState(false); 
@@ -117,7 +118,7 @@ const Home = () => {
 
     return (
         <div className="home-wrapper">
-            <Navbar />
+            <Navbar onNavClick={onNavClick} />
 
             {showIntro && (
                 <div
