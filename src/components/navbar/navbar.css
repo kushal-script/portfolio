@@ -2,21 +2,21 @@
     position: absolute;
     top: 0;
     right: 0;
-    left: 44%;
-    padding: 15px 30px;
+    left: 40.05%;
+    padding: 20px 30px;
     display: flex;
-    justify-content: flex-end;
-    z-index: 10;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
+    justify-content:center;
+    z-index: 60;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     background-color: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(29, 29, 29, 0.452); 
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 80px;
     margin: 0;
     padding: 0;
 }

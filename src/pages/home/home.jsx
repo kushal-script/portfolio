@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { info } from '../../pages/home/home.js';
 import './home.css';
 import image from '../../assets/images/me.png';
-import { FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { Navbar } from '../../components/navbar/navbar.jsx';
 
-// Typing Animation component (unchanged)
-const TypingAnimation = ({ text }) => {
+const TypingAnimation = ({ text, onComplete }) => {
     const [displayedText, setDisplayedText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
     const [loopNum, setLoopNum] = useState(0);
-    const [typingSpeed, setTypingSpeed] = useState(150);
+    const [typingSpeed, setTypingSpeed] = useState(120);
+    const [isTypingFinished, setIsTypingFinished] = useState(false);
 
     useEffect(() => {
-        let typer = setTimeout(() => {
-            handleTyping();
-        }, typingSpeed);
-
+        let typer;
+        if (!isTypingFinished) {
+            typer = setTimeout(() => {
+                handleTyping();
+            }, typingSpeed);
+        }
         return () => clearTimeout(typer);
-    }, [displayedText, isDeleting, loopNum, typingSpeed]); // Added typingSpeed to dependency array
+    }, [displayedText, isDeleting, loopNum, typingSpeed, isTypingFinished]);
 
-    const handleTyping = () => {
+    const handleTyping = useCallback(() => {
         const i = loopNum % text.length;
         const fullText = text[i];
 
@@ -30,15 +32,22 @@ const TypingAnimation = ({ text }) => {
                 : fullText.substring(0, displayedText.length + 1)
         );
 
-        setTypingSpeed(isDeleting ? 50 : 150); // Faster delete, slower type
+        setTypingSpeed(isDeleting ? 50 : 120);
 
         if (!isDeleting && displayedText === fullText) {
-            setTimeout(() => setIsDeleting(true), 1000); // Pause at end of typing
+            if (loopNum === text.length - 1) {
+                setTimeout(() => {
+                    setIsTypingFinished(true);
+                    if (onComplete) onComplete();
+                }, 1000);
+            } else {
+                setTimeout(() => setIsDeleting(true), 1000);
+            }
         } else if (isDeleting && displayedText === '') {
             setIsDeleting(false);
             setLoopNum(loopNum + 1);
         }
-    };
+    }, [displayedText, isDeleting, loopNum, text, typingSpeed, onComplete]);
 
     return (
         <span className="typing-text">{displayedText}
@@ -47,36 +56,30 @@ const TypingAnimation = ({ text }) => {
     );
 };
 
-// New StatItem component for count-up animation
-const StatItem = ({ label, targetNumber, delay = 0 }) => {
+const StatItem = ({ label, targetNumber, delay = 0, start = false }) => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        let start = 0;
-        const duration = 2000; // 2 seconds for animation
-        const increment = targetNumber / (duration / 50); // Calculate increment based on duration and interval
+        if (!start) return;
 
-        if (targetNumber === 0) { // Handle 0 case immediately
-            setCount(0);
-            return;
-        }
+        let startVal = 0;
+        const duration = 2000;
+        const increment = targetNumber / (duration / 50);
 
         const timer = setTimeout(() => {
             const interval = setInterval(() => {
-                start += increment;
-                if (start < targetNumber) {
-                    setCount(Math.ceil(start)); // Round up to ensure it reaches target
+                startVal += increment;
+                if (startVal < targetNumber) {
+                    setCount(Math.ceil(startVal));
                 } else {
                     setCount(targetNumber);
                     clearInterval(interval);
                 }
-            }, 50); // Update every 50ms
-        }, delay); // Start animation after a delay
+            }, 50);
+        }, delay);
 
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [targetNumber, delay]);
+        return () => clearTimeout(timer);
+    }, [targetNumber, delay, start]);
 
     return (
         <div className="stat-item">
@@ -86,39 +89,81 @@ const StatItem = ({ label, targetNumber, delay = 0 }) => {
     );
 };
 
+const IntroScreen = ({ onComplete }) => {
+    const nameTexts = [info.name.full];
+    return (
+        <div className="intro-screen">
+            <h1 className="intro-name">
+                <TypingAnimation text={nameTexts} onComplete={onComplete} />
+            </h1>
+        </div>
+    );
+};
 
 const Home = () => {
-    const nameTexts = [info.name.full];
+    const [showIntro, setShowIntro] = useState(true);
+    const [introMinimizing, setIntroMinimizing] = useState(false);
+    const [introHidden, setIntroHidden] = useState(false); 
+    const [startStats, setStartStats] = useState(false);
+
+    const handleIntroComplete = useCallback(() => {
+        setIntroMinimizing(true);
+        setTimeout(() => {
+            setShowIntro(false); 
+            setIntroHidden(true);
+            setStartStats(true); 
+        }, 1500); 
+    }, []);
 
     return (
         <div className="home-wrapper">
             <Navbar />
+
+            {showIntro && (
+                <div
+                    className={`intro-overlay ${introMinimizing ? 'shrink-right' : ''} ${introHidden ? 'hidden' : ''}`}
+                    onTransitionEnd={() => {
+                        if (introMinimizing) {
+                            setIntroHidden(true);
+                        }
+                    }}
+                >
+                    <IntroScreen onComplete={handleIntroComplete} />
+                </div>
+            )}
+
             <div className="home-container">
                 <div className="image-section">
-                    <img src={image} alt="Kushal Sathyanarayan" className="profile-image" />
+                    <div className="image-border-wrapper">
+                        <img src={image} alt="Kushal Sathyanarayan" className="profile-image" />
+                    </div>
+                    <p className="about-me-text-image-section">
+                        {info.description.about}
+                    </p>
                 </div>
+
                 <div className="description-section">
                     <p className="greeting">Hello, I am</p>
-                    <h1 className="name">
-                        <TypingAnimation text={nameTexts} />
-                    </h1>
+                    <h1 className="name">{info.name.full}</h1>
                     <p className="attribute">{info.description.attribute}</p>
                     <p className="major">{info.description.major} <span className="tag">major</span> </p>
                     <p className="minor">{info.description.minor} <span className="tag">minor</span> </p>
+
                     <p className="find-me">Find Me on</p>
                     <div className="social-links">
                         {info.social.github && <a href={info.social.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>}
                         {info.social.linkedin && <a href={info.social.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>}
                         {info.social.instagram && <a href={info.social.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>}
+                        {info.social.email && <a href={`mailto:${info.social.email}`} title="Email Me"><FaEnvelope /></a>}
                     </div>
-                
+
                     <div className="stats-container">
-                        <StatItem label="Projects" targetNumber={info.stats.projectsCompleted} delay={0} />
-                        <StatItem label="Working On" targetNumber={info.stats.workingProjects} delay={200} />
-                        <StatItem label="Skills" targetNumber={info.stats.skills} delay={400} />
-                        <StatItem label="Certifications" targetNumber={info.stats.certifications} delay={600} />
-                        <StatItem label="Experience" targetNumber={info.stats.experience} delay={800} />
-                        <StatItem label="Commits" targetNumber={info.stats.codeCommits} delay={1000} />
+                        <StatItem label="Completed Projects" targetNumber={info.stats.projectsCompleted} delay={0} start={startStats} />
+                        <StatItem label="Projects Working On" targetNumber={info.stats.workingProjects} delay={200} start={startStats} />
+                        <StatItem label="Proficient Technologies" targetNumber={info.stats.skills} delay={400} start={startStats} />
+                        <StatItem label="Certifications" targetNumber={info.stats.certifications} delay={600} start={startStats} />
+                        <StatItem label="Experience" targetNumber={info.stats.experience} delay={800} start={startStats} />
+                        <StatItem label="Code Commits" targetNumber={info.stats.codeCommits} delay={1000} start={startStats} />
                     </div>
                 </div>
             </div>
