@@ -287,72 +287,64 @@
 
 /**/
 
-.experience-card {
+.skills-card {
   background: rgba(20, 20, 30, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 35px 40px;
-  margin: 1.5vh auto;
-  max-width: 950px;
-  width: 90%;
-  color: #ffffff;
+  padding: 25px;
+  width: 180px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  z-index: 10;
 }
 
-.experience-card:hover {
+.skills-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
 }
 
-.experience-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
+.skills-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 12px;
 }
 
-.experience-role {
-  font-size: 1.6em;
-  font-weight: 600;
-  margin: 0;
-  color: #ffffff;
-}
-
-.experience-company {
+.skills-name {
   font-size: 1em;
   color: #ff6b6b;
-  margin-left: 10px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.experience-duration {
-  font-size: 0.85em;
-  color: #ffa3a3;
-  font-style: italic;
-  background-color: rgba(255, 107, 107, 0.08);
-  padding: 4px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.experience-desc {
-  font-size: 1em;
-  line-height: 1.6;
+.skills-projects {
+  font-size: 0.8em;
   color: #d0d0d0;
-  margin: 15px 0;
+  margin-top: auto;
 }
 
-.experience-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+.skills-projects span {
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.skills-projects ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.skills-project-name {
+  font-size: 0.75em;
+  color: #ffa3a3;
 }

@@ -7,6 +7,8 @@ import { Projects } from './pages/projects/projects.jsx';
 import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
 import { Experience } from './pages/experience/experience.jsx';
 import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
+import { Skills } from './pages/skills/skills.jsx';
+import { SkillsLoad } from './components/loaders/skillsLoad.jsx';
 import './App.css';
 
 function App() {
@@ -15,10 +17,12 @@ function App() {
   const [achievementsReady, setAchievementsReady] = useState(false);
   const [projectsReady, setProjectsReady] = useState(false);
   const [experienceReady, setExperienceReady] = useState(false);
+  const [skillReady, setSkillReady] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
 
   const handleNavClick = (page) => {
-    if (page === 'achievements' || page === 'projects' || page === 'experience') {
+    if (page === 'achievements' || page === 'projects' || page === 'experience' || page === 'skills') {
+      if (currentPage === page) return; 
       setIsOverlayActive(true);
       setTimeout(() => {
         setCurrentPage(page);
@@ -26,6 +30,7 @@ function App() {
         setAchievementsReady(false);
         setProjectsReady(false);
         setExperienceReady(false);
+        setSkillReady(false);
       }, 300);
     } else {
       setCurrentPage(page);
@@ -37,6 +42,7 @@ function App() {
     if (currentPage === 'achievements') setAchievementsReady(true);
     if (currentPage === 'projects') setProjectsReady(true);
     if (currentPage === 'experience') setExperienceReady(true);
+    if (currentPage === 'skills') setSkillReady(true);
     setIsOverlayActive(false);
   };
 
@@ -60,6 +66,9 @@ function App() {
       {currentPage === 'experience' && (
         <Experience onNavClick={handleNavClick} ready={experienceReady} />
       )}
+      {currentPage === 'skills' && (
+        <Skills onNavClick={handleNavClick} ready={skillReady} />
+      )}
   
       {showLoader && currentPage === 'achievements' && (
         <AchievementLoad onComplete={handleLoaderComplete} />
@@ -69,6 +78,9 @@ function App() {
       )}
       {showLoader && currentPage === 'experience' && (
         <ExperienceLoad onComplete={handleLoaderComplete} />
+      )}
+      {showLoader && currentPage === 'skills' && (
+        <SkillsLoad onComplete={handleLoaderComplete} />
       )}
     </div>
   );

@@ -6,7 +6,7 @@ import icon2 from '../../assets/icons/skills/skills2.png';
 import icon3 from '../../assets/icons/skills/skills3.png';
 import icon4 from '../../assets/icons/skills/skills4.png';
 
-const icons = [icon1, icon2, icon3, icon4, icon5];
+const icons = [icon1, icon2, icon3, icon4];
 
 
 const containerVariants = {

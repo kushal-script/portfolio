@@ -1,0 +1,63 @@
+.skills-container {
+    padding: 80px 5vw 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #140026 0%, #300055 100%);
+    position: relative;
+    overflow-x: hidden;
+    z-index: 1;
+    color: #ffffff;
+  }
+  
+  .skills-container::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255,255,255,0.02) 0%, transparent 50%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="rgba(255,255,255,0.01)"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.025)"/></svg>');
+    background-size: cover, cover, 20px 20px;
+    opacity: 0.75;
+    animation: background-pan 60s linear infinite;
+    z-index: -1;
+  }
+  
+  @keyframes background-pan {
+    from {
+      background-position: 0% 0%, 0% 0%, 0 0;
+    }
+    to {
+      background-position: 100% 100%, 100% 100%, 20px 20px;
+    }
+  }
+  
+  .skills-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .skills-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.6s ease-in-out;
+  }
+  
+  .skills-page-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .skills-page-wrapper.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.6s ease-in-out;
+  }
