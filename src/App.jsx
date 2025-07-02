@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { Home } from './pages/home/home.jsx';
 import { Achievements } from './pages/achievements/achievements.jsx';
 import { AchievementLoad } from './components/loaders/achievementLoad.jsx';
-import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
 import { Projects } from './pages/projects/projects.jsx';
+import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
+import { Experience } from './pages/experience/experience.jsx';
+import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
 import './App.css';
 
 function App() {
@@ -12,16 +14,18 @@ function App() {
   const [showLoader, setShowLoader] = useState(false);
   const [achievementsReady, setAchievementsReady] = useState(false);
   const [projectsReady, setProjectsReady] = useState(false);
+  const [experienceReady, setExperienceReady] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
 
   const handleNavClick = (page) => {
-    if (page === 'achievements' || page === 'projects') {
+    if (page === 'achievements' || page === 'projects' || page === 'experience') {
       setIsOverlayActive(true);
       setTimeout(() => {
         setCurrentPage(page);
         setShowLoader(true);
         setAchievementsReady(false);
         setProjectsReady(false);
+        setExperienceReady(false);
       }, 300);
     } else {
       setCurrentPage(page);
@@ -32,6 +36,7 @@ function App() {
     setShowLoader(false);
     if (currentPage === 'achievements') setAchievementsReady(true);
     if (currentPage === 'projects') setProjectsReady(true);
+    if (currentPage === 'experience') setExperienceReady(true);
     setIsOverlayActive(false);
   };
 
@@ -52,12 +57,18 @@ function App() {
       {currentPage === 'projects' && (
         <Projects onNavClick={handleNavClick} ready={projectsReady} />
       )}
+      {currentPage === 'experience' && (
+        <Experience onNavClick={handleNavClick} ready={experienceReady} />
+      )}
   
       {showLoader && currentPage === 'achievements' && (
         <AchievementLoad onComplete={handleLoaderComplete} />
       )}
       {showLoader && currentPage === 'projects' && (
         <ProjectsLoad onComplete={handleLoaderComplete} />
+      )}
+      {showLoader && currentPage === 'experience' && (
+        <ExperienceLoad onComplete={handleLoaderComplete} />
       )}
     </div>
   );

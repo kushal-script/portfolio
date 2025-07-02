@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import './loader.css';
 import icon1 from '../../assets/icons/experience/experience1.png';
 import icon2 from '../../assets/icons/experience/experience2.png';
 import icon3 from '../../assets/icons/experience/experience3.png';

@@ -1,0 +1,139 @@
+.experience-container {
+    padding: 80px 5vw 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #140026 0%, #300055 100%);
+    position: relative;
+    overflow-x: hidden;
+    z-index: 1;
+    color: #ffffff;
+  }
+  
+  .experience-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255,255,255,0.02) 0%, transparent 50%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="rgba(255,255,255,0.01)"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.025)"/></svg>');
+    background-size: cover, cover, 20px 20px;
+    opacity: 0.75;
+    animation: background-pan 60s linear infinite;
+    z-index: -1;
+  }
+  
+  @keyframes background-pan {
+    from {
+      background-position: 0% 0%, 0% 0%, 0 0;
+    }
+    to {
+      background-position: 100% 100%, 100% 100%, 20px 20px;
+    }
+  }
+  
+  .experience-page-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .experience-page-wrapper.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.6s ease-in-out;
+  }
+  
+  /* --- Experience Card Styling --- */
+  .experience-card {
+    background: rgba(20, 20, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px 35px;
+    margin: 1.5vh auto;
+    max-width: 900px;
+    width: 90%;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+  }
+  
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .experience-role {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .experience-company {
+    font-size: 1em;
+    font-weight: 500;
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.08);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 5px rgba(255, 107, 107, 0.1);
+  }
+  
+  .experience-duration {
+    font-size: 0.85em;
+    font-style: italic;
+    color: #d0d0d0;
+    margin-top: 6px;
+  }
+  
+  .experience-description {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #d0d0d0;
+    margin: 15px 0 20px;
+  }
+  
+  .experience-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .experience-tech-tag {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ff6b6b;
+    font-size: 0.8em;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    letter-spacing: 0.4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .experience-tech-tag:hover {
+    background-color: rgba(255, 107, 107, 0.15);
+    transform: scale(1.04);
+  }
