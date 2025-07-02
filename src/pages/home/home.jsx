@@ -4,7 +4,6 @@ import './home.css';
 import image from '../../assets/images/me.png';
 import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { Navbar } from '../../components/navbar/navbar.jsx';
-import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
 
 const TypingAnimation = ({ text, onComplete }) => {
     const [displayedText, setDisplayedText] = useState('');
@@ -162,7 +161,7 @@ const Home = ({ onNavClick }) => {
                         <StatItem label="Completed Projects" targetNumber={info.stats.projectsCompleted} delay={0} start={startStats} />
                         <StatItem label="Projects Working On" targetNumber={info.stats.workingProjects} delay={200} start={startStats} />
                         <StatItem label="Proficient Technologies" targetNumber={info.stats.skills} delay={400} start={startStats} />
-                        <StatItem label="Certifications" targetNumber={info.stats.certifications} delay={600} start={startStats} />
+                        <StatItem label="Years of Experience" targetNumber={info.stats.yearsOfExperience} delay={600} start={startStats} />
                         <StatItem label="Experience" targetNumber={info.stats.experience} delay={800} start={startStats} />
                         <StatItem label="Code Commits" targetNumber={info.stats.codeCommits} delay={1000} start={startStats} />
                     </div>

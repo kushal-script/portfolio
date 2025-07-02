@@ -20,8 +20,8 @@ export const info = {
       projectsCompleted: 2,
       workingProjects: 3,
       skills: 19,
-      certifications: 5,
-      experience: 0,
+      yearsOfExperience: 0,
+      experience: 1,
       codeCommits: 100
     }
   };
