@@ -10,11 +10,13 @@ const ExperienceCard = ({ role, company, duration, description, tech }) => {
         <span className="experience-duration">{duration}</span>
       </div>
       <p className="experience-desc">{description}</p>
-      <div className="experience-tech">
-        {tech.map((item, idx) => (
-          <span key={idx} className="tech-tag">{item}</span>
-        ))}
-      </div>
+      {tech && tech.length > 0 && (
+        <div className="experience-tech">
+          {tech.map((item, idx) => (
+            <span key={idx} className="tech-tag">{item}</span>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
