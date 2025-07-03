@@ -9,6 +9,7 @@ import { Experience } from './pages/experience/experience.jsx';
 import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
 import { Skills } from './pages/skills/skills.jsx';
 import { SkillsLoad } from './components/loaders/skillsLoad.jsx';
+import { HomeReturnLoad } from './components/loaders/homeLoad.jsx';
 import './App.css';
 
 function App() {
@@ -19,11 +20,15 @@ function App() {
   const [experienceReady, setExperienceReady] = useState(false);
   const [skillReady, setSkillReady] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
+  const [showHomeReturnLoader, setShowHomeReturnLoader] = useState(false);
+  const [isInitialHomeLoad, setIsInitialHomeLoad] = useState(true); 
 
   const handleNavClick = (page) => {
-    if (page === 'achievements' || page === 'projects' || page === 'experience' || page === 'skills') {
+    if (['achievements', 'projects', 'experience', 'skills'].includes(page)) {
       if (currentPage === page) return; 
-      setIsOverlayActive(true);
+      setIsOverlayActive(true); 
+      setIsInitialHomeLoad(false); 
+      
       setTimeout(() => {
         setCurrentPage(page);
         setShowLoader(true);
@@ -32,8 +37,12 @@ function App() {
         setExperienceReady(false);
         setSkillReady(false);
       }, 300);
-    } else {
-      setCurrentPage(page);
+    } 
+    else if (page === 'home') {
+      if (currentPage === 'home') return; 
+      setIsOverlayActive(true); 
+      setShowHomeReturnLoader(true); 
+      setIsInitialHomeLoad(false);
     }
   };
 
@@ -43,7 +52,13 @@ function App() {
     if (currentPage === 'projects') setProjectsReady(true);
     if (currentPage === 'experience') setExperienceReady(true);
     if (currentPage === 'skills') setSkillReady(true);
-    setIsOverlayActive(false);
+    setIsOverlayActive(false); 
+  };
+
+  const handleHomeReturnLoaderComplete = () => {
+    setShowHomeReturnLoader(false); 
+    setCurrentPage('home');         
+    setIsOverlayActive(false);      
   };
 
   return (
@@ -51,12 +66,13 @@ function App() {
       <motion.div
         className="page-dim-overlay"
         initial={{ opacity: 0 }}
-        animate={{ opacity: isOverlayActive ? 0.6 : 0 }}
+        animate={{ opacity: isOverlayActive ? 0.6 : 0 }} 
         transition={{ duration: 0.3 }}
         style={{ pointerEvents: isOverlayActive ? 'all' : 'none' }}
       />
-  
-      {currentPage === 'home' && <Home onNavClick={handleNavClick} />}
+      {currentPage === 'home' && (
+        <Home onNavClick={handleNavClick} isInitialLoad={isInitialHomeLoad} />
+      )}
       {currentPage === 'achievements' && (
         <Achievements onNavClick={handleNavClick} ready={achievementsReady} />
       )}
@@ -69,19 +85,17 @@ function App() {
       {currentPage === 'skills' && (
         <Skills onNavClick={handleNavClick} ready={skillReady} />
       )}
-  
-      {showLoader && currentPage === 'achievements' && (
-        <AchievementLoad onComplete={handleLoaderComplete} />
+
+      {showLoader && currentPage !== 'home' && ( 
+        <>
+          {currentPage === 'achievements' && <AchievementLoad onComplete={handleLoaderComplete} />}
+          {currentPage === 'projects' && <ProjectsLoad onComplete={handleLoaderComplete} />}
+          {currentPage === 'experience' && <ExperienceLoad onComplete={handleLoaderComplete} />}
+          {currentPage === 'skills' && <SkillsLoad onComplete={handleLoaderComplete} />}
+        </>
       )}
-      {showLoader && currentPage === 'projects' && (
-        <ProjectsLoad onComplete={handleLoaderComplete} />
-      )}
-      {showLoader && currentPage === 'experience' && (
-        <ExperienceLoad onComplete={handleLoaderComplete} />
-      )}
-      {showLoader && currentPage === 'skills' && (
-        <SkillsLoad onComplete={handleLoaderComplete} />
-      )}
+
+      {showHomeReturnLoader && <HomeReturnLoad onComplete={handleHomeReturnLoaderComplete} />}
     </div>
   );
 }

@@ -60,7 +60,10 @@ const StatItem = ({ label, targetNumber, delay = 0, start = false }) => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        if (!start) return;
+        if (!start) {
+            setCount(0); 
+            return;
+        }
 
         let startVal = 0;
         const duration = 2000;
@@ -79,8 +82,7 @@ const StatItem = ({ label, targetNumber, delay = 0, start = false }) => {
         }, delay);
 
         return () => clearTimeout(timer);
-    }, [targetNumber, delay, start]);
-
+    }, [targetNumber, delay, start]); 
     return (
         <div className="stat-item">
             <span className="stat-number">{count}</span>
@@ -88,23 +90,32 @@ const StatItem = ({ label, targetNumber, delay = 0, start = false }) => {
         </div>
     );
 };
-
 const IntroScreen = ({ onComplete }) => {
     const nameTexts = [info.name.full];
     return (
         <div className="intro-screen">
             <h1 className="intro-name">
-                <TypingAnimation text={nameTexts} onComplete={onComplete} />
+                {<TypingAnimation text={nameTexts} onComplete={onComplete} />}
             </h1>
         </div>
     );
 };
-
-const Home = ({ onNavClick }) => {
-    const [showIntro, setShowIntro] = useState(true);
+const Home = ({ onNavClick, isInitialLoad }) => { 
+    const [showIntro, setShowIntro] = useState(isInitialLoad); 
     const [introMinimizing, setIntroMinimizing] = useState(false);
     const [introHidden, setIntroHidden] = useState(false); 
     const [startStats, setStartStats] = useState(false);
+    useEffect(() => {
+        if (!isInitialLoad) {
+            setShowIntro(false);     
+            setIntroHidden(true);    
+            setStartStats(true);     
+            setShowIntro(true);
+            setIntroHidden(false);
+            setIntroMinimizing(false);
+            setStartStats(false); 
+        }
+    }, [isInitialLoad]); 
 
     const handleIntroComplete = useCallback(() => {
         setIntroMinimizing(true);
@@ -123,7 +134,7 @@ const Home = ({ onNavClick }) => {
                 <div
                     className={`intro-overlay ${introMinimizing ? 'shrink-right' : ''} ${introHidden ? 'hidden' : ''}`}
                     onTransitionEnd={() => {
-                        if (introMinimizing) {
+                        if (introMinimizing && !introHidden) {
                             setIntroHidden(true);
                         }
                     }}
