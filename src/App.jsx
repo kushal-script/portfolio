@@ -1,92 +1,142 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Home } from './pages/home/home.jsx';
 import { Achievements } from './pages/achievements/achievements.jsx';
-import { AchievementLoad } from './components/loaders/achievementLoad.jsx';
 import { Projects } from './pages/projects/projects.jsx';
-import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
 import { Experience } from './pages/experience/experience.jsx';
-import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
 import { Skills } from './pages/skills/skills.jsx';
+import { AchievementLoad } from './components/loaders/achievementLoad.jsx';
+import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
+import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
 import { SkillsLoad } from './components/loaders/skillsLoad.jsx';
 import { HomeReturnLoad } from './components/loaders/homeLoad.jsx';
 import './App.css';
 
+const pageTransitionVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [showLoader, setShowLoader] = useState(false);
-  const [achievementsReady, setAchievementsReady] = useState(false);
-  const [projectsReady, setProjectsReady] = useState(false);
-  const [experienceReady, setExperienceReady] = useState(false);
-  const [skillReady, setSkillReady] = useState(false);
-  const [isOverlayActive, setIsOverlayActive] = useState(false);
+  const [pageReady, setPageReady] = useState({
+    achievements: false,
+    projects: false,
+    experience: false,
+    skills: false,
+  });
   const [showHomeReturnLoader, setShowHomeReturnLoader] = useState(false);
-  const [isInitialHomeLoad, setIsInitialHomeLoad] = useState(true); 
+  const [isOverlayActive, setIsOverlayActive] = useState(false);
+  const [homeShouldRender, setHomeShouldRender] = useState(true);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   const handleNavClick = (page) => {
-    if (['achievements', 'projects', 'experience', 'skills'].includes(page)) {
-      if (currentPage === page) return; 
-      setIsOverlayActive(true); 
-      setIsInitialHomeLoad(false); 
-      
+    if (page === currentPage) return;
+    setIsOverlayActive(true);
+
+    if (page === 'home') {
+      setHomeShouldRender(false);
+      setShowHomeReturnLoader(true);
+    } else {
+      setHomeShouldRender(false);
       setTimeout(() => {
         setCurrentPage(page);
         setShowLoader(true);
-        setAchievementsReady(false);
-        setProjectsReady(false);
-        setExperienceReady(false);
-        setSkillReady(false);
+        setPageReady((prev) => ({ ...prev, [page]: false }));
       }, 300);
-    } 
-    else if (page === 'home') {
-      if (currentPage === 'home') return; 
-      setIsOverlayActive(true); 
-      setShowHomeReturnLoader(true); 
-      setIsInitialHomeLoad(false);
     }
   };
 
   const handleLoaderComplete = () => {
     setShowLoader(false);
-    if (currentPage === 'achievements') setAchievementsReady(true);
-    if (currentPage === 'projects') setProjectsReady(true);
-    if (currentPage === 'experience') setExperienceReady(true);
-    if (currentPage === 'skills') setSkillReady(true);
-    setIsOverlayActive(false); 
+    setPageReady((prev) => ({ ...prev, [currentPage]: true }));
+    setIsOverlayActive(false);
   };
 
-  const handleHomeReturnLoaderComplete = () => {
-    setShowHomeReturnLoader(false); 
-    setCurrentPage('home');         
-    setIsOverlayActive(false);      
+  const handleHomeReturnHalf = () => {
+    setInitialLoadDone(true);
+    setCurrentPage('home');
+    setHomeShouldRender(true);
+  };
+
+  const handleHomeReturnComplete = () => {
+    setShowHomeReturnLoader(false);
+    setIsOverlayActive(false);
+    setInitialLoadDone(true);
   };
 
   return (
     <div className="app-root">
-      <motion.div
-        className="page-dim-overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isOverlayActive ? 0.6 : 0 }} 
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: isOverlayActive ? 'all' : 'none' }}
-      />
-      {currentPage === 'home' && (
-        <Home onNavClick={handleNavClick} isInitialLoad={isInitialHomeLoad} />
-      )}
-      {currentPage === 'achievements' && (
-        <Achievements onNavClick={handleNavClick} ready={achievementsReady} />
-      )}
-      {currentPage === 'projects' && (
-        <Projects onNavClick={handleNavClick} ready={projectsReady} />
-      )}
-      {currentPage === 'experience' && (
-        <Experience onNavClick={handleNavClick} ready={experienceReady} />
-      )}
-      {currentPage === 'skills' && (
-        <Skills onNavClick={handleNavClick} ready={skillReady} />
-      )}
+      <AnimatePresence mode="wait">
+        {currentPage === 'home' && homeShouldRender && (
+          <motion.div
+            key="home"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <Home onNavClick={handleNavClick} isInitialLoad={!initialLoadDone} />
+          </motion.div>
+        )}
 
-      {showLoader && currentPage !== 'home' && ( 
+        {currentPage === 'achievements' && (
+          <motion.div
+            key="achievements"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <Achievements onNavClick={handleNavClick} ready={pageReady.achievements} />
+          </motion.div>
+        )}
+
+        {currentPage === 'projects' && (
+          <motion.div
+            key="projects"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <Projects onNavClick={handleNavClick} ready={pageReady.projects} />
+          </motion.div>
+        )}
+
+        {currentPage === 'experience' && (
+          <motion.div
+            key="experience"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <Experience onNavClick={handleNavClick} ready={pageReady.experience} />
+          </motion.div>
+        )}
+
+        {currentPage === 'skills' && (
+          <motion.div
+            key="skills"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <Skills onNavClick={handleNavClick} ready={pageReady.skills} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {showLoader && (
         <>
           {currentPage === 'achievements' && <AchievementLoad onComplete={handleLoaderComplete} />}
           {currentPage === 'projects' && <ProjectsLoad onComplete={handleLoaderComplete} />}
@@ -95,7 +145,12 @@ function App() {
         </>
       )}
 
-      {showHomeReturnLoader && <HomeReturnLoad onComplete={handleHomeReturnLoaderComplete} />}
+      {showHomeReturnLoader && (
+        <HomeReturnLoad
+          onHalfComplete={handleHomeReturnHalf}
+          onComplete={handleHomeReturnComplete}
+        />
+      )}
     </div>
   );
 }
