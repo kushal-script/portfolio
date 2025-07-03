@@ -1,5 +1,5 @@
 .navbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 40.05%;
@@ -17,6 +17,7 @@
     list-style: none;
     display: flex;
     gap: 80px;
+    align-items: center;
     margin: 0;
     padding: 0;
 }
@@ -34,7 +35,7 @@
     cursor: pointer;
 }
 
-.nav-links li button::after {
+.nav-links li button:not(.hireme-btn)::after {
     content: '';
     position: absolute;
     left: 0;
@@ -47,13 +48,15 @@
     transition: transform 0.3s ease;
 }
 
-.nav-links li button:hover {
+.nav-links li button:not(.hireme-btn):hover,
+.nav-links-pages li button:not(.hireme-btn):hover {
     color: #ff4d4d;
     transform: translateY(-2px); 
 }
 
-.nav-links li button:hover::after {
-    transform: scaleX(1); 
+.nav-links li button:not(.hireme-btn):hover::after,
+.nav-links-pages li button:not(.hireme-btn):hover::after {
+  transform: scaleX(1);
 }
 
 .navbarPages {
@@ -96,9 +99,23 @@
 .nav-links-pages {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 80px;
     margin: 0;
     padding: 0;
+}
+
+.nav-links-pages li button:not(.hireme-btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #ff4d4d;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
 .nav-links-pages li button {
@@ -114,24 +131,49 @@
     cursor: pointer;
 }
 
-.nav-links-pages li button::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
+.nav-links li button:not(.hireme-btn)::after,
+.nav-links-pages li button:not(.hireme-btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-links li button:not(.hireme-btn):hover,
+.nav-links-pages li button:not(.hireme-btn):hover {
+  transform: translateY(-2px);
+}
+
+.nav-links li button:not(.hireme-btn):hover::after,
+.nav-links-pages li button:not(.hireme-btn):hover::after {
+  transform: scaleX(1);
+}
+
+.hireme-btn::after {
+  content: none !important;
+  display: none !important;
+}
+
+.hireme-btn {
+    padding: 10px 20px;
     background-color: #ff4d4d;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-}
-
-.nav-links-pages li button:hover {
-    color: #ff4d4d;
-    transform: translateY(-2px); 
-}
-
-.nav-links-pages li button:hover::after {
-    transform: scaleX(1); 
-}
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+  }
+  
+  .hireme-btn:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.05);
+    box-shadow: 0 0 14px rgba(255, 77, 77, 0.205);
+  }

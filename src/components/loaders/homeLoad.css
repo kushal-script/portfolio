@@ -14,5 +14,34 @@
 .vertical-strip {
     flex: 1;
     height: 100%;
-    background: linear-gradient(135deg, #1A0033 0%, #3A0066 100%); 
+    background: linear-gradient(135deg, #1A0033 0%, #3A0066 100%);
+    position: relative; 
+    overflow: hidden;
+  }
+
+.strip-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.strip-icon {
+    font-size: 2.5rem;
+    color: #ffffffcc;
+    opacity: 0;
+    animation: iconFadeIn 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes iconFadeIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

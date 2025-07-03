@@ -1,0 +1,149 @@
+.hireme-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #140026 0%, #300055 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 100px 5vw 60px;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.hireme-page-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(255,255,255,0.02) 0%, transparent 50%),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="rgba(255,255,255,0.01)"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.025)"/></svg>');
+  background-size: cover, cover, 20px 20px;
+  opacity: 0.75;
+  animation: background-pan 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% 0%, 0% 0%, 0 0;
+  }
+  to {
+    background-position: 100% 100%, 100% 100%, 20px 20px;
+  }
+}
+
+.hireme-page-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hireme-page-wrapper.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.hireme-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  background: rgba(20, 20, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  position: relative;
+}
+
+.hireme-title {
+  text-align: center;
+  font-size: 2.4em;
+  font-weight: 700;
+  color: #ff4d4d;
+  margin-bottom: 35px;
+}
+
+.hireme-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-row input {
+  flex: 1;
+  min-width: 240px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-row input:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.02);
+  border-color: #ff4d4d;
+}
+
+.form-message textarea {
+  width: 100%;
+  max-width: 100%; 
+  padding: 18px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 1.05em;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+}
+
+.form-message textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+.form-message textarea:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #ff4d4d;
+  transform: scale(1.01);
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+}
+
+.send-message-btn {
+  padding: 16px 32px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #ffffff;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.5);
+}
+
+.send-message-btn:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 77, 77, 0.7);
+}

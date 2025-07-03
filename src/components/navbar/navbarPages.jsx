@@ -13,6 +13,7 @@ const NavbarPages = ({ onNavClick }) => {
                     <li><button onClick={() => onNavClick('projects')}>Projects</button></li>
                     <li><button onClick={() => onNavClick('experience')}>Experience</button></li>
                     <li><button onClick={() => onNavClick('skills')}>Skills</button></li>
+                    <li><button className="hireme-btn" onClick={() => onNavClick('hireme')}>Hire Me</button></li>
                 </ul>
             </div>
         </nav>

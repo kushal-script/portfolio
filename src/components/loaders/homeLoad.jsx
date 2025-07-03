@@ -1,6 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './homeLoad.css';
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaPython, FaGitAlt, FaJava, FaJs } from 'react-icons/fa';
+import { SiMongodb, SiMysql } from 'react-icons/si';
+
+const iconSet = [
+    FaReact,
+    FaNodeJs,
+    FaHtml5,
+    FaCss3Alt,
+    FaPython,
+    FaGitAlt,
+    FaJava,
+    FaJs,
+    SiMongodb,
+    SiMysql
+];
 
 const NUM_STRIPS = 10;
 
@@ -55,6 +70,11 @@ const HomeReturnLoad = ({ onComplete, onHalfComplete }) => {
         };
     }, [onComplete, onHalfComplete]);
 
+    const [stripIcons] = useState(() => {
+        const shuffled = [...iconSet].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, NUM_STRIPS);
+    });
+
     return (
         <AnimatePresence>
             {isVisible && (
@@ -64,7 +84,7 @@ const HomeReturnLoad = ({ onComplete, onHalfComplete }) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, transition: { duration: 0.3, delay: maxStripExitDuration } }}
                 >
-                    {[...Array(NUM_STRIPS)].map((_, i) => (
+                    {stripIcons.map((Icon, i) => (
                         <motion.div
                             key={i}
                             className="vertical-strip"
@@ -72,7 +92,11 @@ const HomeReturnLoad = ({ onComplete, onHalfComplete }) => {
                             initial="initial"
                             animate="animate"
                             exit="exit"
-                        />
+                        >
+                            <div className="strip-icon-wrapper">
+                                <Icon className="strip-icon" />
+                            </div>
+                        </motion.div>
                     ))}
                 </motion.div>
             )}

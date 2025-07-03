@@ -10,6 +10,8 @@ import { ProjectsLoad } from './components/loaders/projectLoad.jsx';
 import { ExperienceLoad } from './components/loaders/experienceLoad.jsx';
 import { SkillsLoad } from './components/loaders/skillsLoad.jsx';
 import { HomeReturnLoad } from './components/loaders/homeLoad.jsx';
+import { HireMe } from './pages/hireme/hireme.jsx';
+import { HireMeLoad } from './components/loaders/hiremeLoad.jsx';
 import './App.css';
 
 const pageTransitionVariants = {
@@ -26,6 +28,7 @@ function App() {
     projects: false,
     experience: false,
     skills: false,
+    hireme: false,
   });
   const [showHomeReturnLoader, setShowHomeReturnLoader] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
@@ -134,6 +137,19 @@ function App() {
             <Skills onNavClick={handleNavClick} ready={pageReady.skills} />
           </motion.div>
         )}
+
+        {currentPage === 'hireme' && (
+          <motion.div
+            key="hireme"
+            variants={pageTransitionVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+          >
+            <HireMe onNavClick={handleNavClick} ready={pageReady.hireme} />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {showLoader && (
@@ -142,6 +158,7 @@ function App() {
           {currentPage === 'projects' && <ProjectsLoad onComplete={handleLoaderComplete} />}
           {currentPage === 'experience' && <ExperienceLoad onComplete={handleLoaderComplete} />}
           {currentPage === 'skills' && <SkillsLoad onComplete={handleLoaderComplete} />}
+          {currentPage === 'hireme' && <HireMeLoad onComplete={handleLoaderComplete} />}
         </>
       )}
 
