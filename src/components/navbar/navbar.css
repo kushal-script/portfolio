@@ -177,3 +177,23 @@
     transform: scale(1.05);
     box-shadow: 0 0 14px rgba(255, 77, 77, 0.205);
   }
+
+  @media (max-width: 479px) {
+    /* Target: very small phones */
+  }
+
+  @media (min-width: 480px) and (max-width: 767px) {
+    /* Target: most smartphones */
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* Target: tablets (portrait & landscape) */
+  }
+
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    /* Target: laptops and small desktops */
+  }
+
+  @media (min-width: 1280px) and (max-width: 1439px) {
+    /* Target: standard desktops */
+  }
