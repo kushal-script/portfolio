@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { FaPaperPlane } from 'react-icons/fa';
-import './hireMeLoad.css';
+import './hiremeLoad.css';
 
 gsap.registerPlugin(MotionPathPlugin);
 

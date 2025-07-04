@@ -8,7 +8,7 @@ export const info = {
       attribute: "Full Stack Software Developer",
       major: "AIML",
       minor: "Semiconductor Technology",
-      about: '"I am a passionate full stack software developer with a keen interest in AI, ML, Semiconductor Technology and Healthcare. I am currently pursuing my B.Tech in CSE at RV University, Bangalore. I have a strong foundation in programming languages such as Python, JavaScript, Java and C++, and I am proficient in software development technologies including MERN and Python frameworks. My goal is to leverage my skills to create innovative solutions that make a positive impact on society."'
+      about: '"I am a passionate full stack software developer with a keen interest in AI, ML, Semiconductor Technology and Healthcare. I am currently pursuing my B.Tech in CSE at RV University, Bangalore. I have a strong foundation in programming languages such as Python, JavaScript, Java, C and C++, and I am proficient in software development technologies including MERN and Python frameworks. My goal is to leverage my skills to create innovative solutions that make a positive impact on society."'
     },
     social: {
       linkedin: "https://www.linkedin.com/in/kushal-s-rv-university/",
