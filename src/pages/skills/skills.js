@@ -1,73 +1,26 @@
-import reactLogo from "../../assets/icons/skills/reactLogo.png";
-import nodeLogo from "../../assets/icons/skills/nodeLogo.png";
-import expressLogo from "../../assets/icons/skills/expressLogo.png";
-import mysqlLogo from "../../assets/icons/skills/mysqlLogo.png";
-import mongoLogo from "../../assets/icons/skills/mongoLogo.png";
-import jsLogo from "../../assets/icons/skills/jsLogo.png";
-import cssLogo from "../../assets/icons/skills/cssLogo.png";
-import ejsLogo from "../../assets/icons/skills/ejsLogo.png";
-import tailwindLogo from "../../assets/icons/skills/tailwindLogo.png";
-import gsapLogo from "../../assets/icons/skills/gsapLogo.webp";
-import framerLogo from "../../assets/icons/skills/framerLogo.png";
-import bootstrapLogo from "../../assets/icons/skills/bootstrapLogo.png";
-import javaLogo from "../../assets/icons/skills/javaLogo.png";
-import cLogo from "../../assets/icons/skills/cLogo.png";
-import ccLogo from "../../assets/icons/skills/ccLogo.png";
-import pythonLogo from "../../assets/icons/skills/pythonLogo.png";
-import htmlLogo from "../../assets/icons/skills/htmlLogo.png";
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, FaJava, FaPython } from "react-icons/fa";
+import { SiExpress, SiMysql, SiMongodb, SiJavascript, SiEjs, SiTailwindcss, SiGreensock, SiFramer, SiC, SiCplusplus, SiFigma } from "react-icons/si";
 
 const skills = [
-    {
-        name: "React JS", logo: reactLogo, projects: ["Portfolio"]
-    },
-    {
-        name: "Node JS", logo: nodeLogo, projects: ["WanderScript"]
-    },
-    {
-        name: "Express JS", logo: expressLogo, projects: ["WanderScript"]
-    },
-    {
-        name: "MySQL", logo: mysqlLogo, projects: ["WanderScript"]
-    },
-    {
-        name: "MongoDB", logo: mongoLogo, projects: ["WanderScript"]
-    },
-    {
-        name: "Java Script", logo: jsLogo, projects: ["WanderScript", "Portfolio"]
-    },
-    {
-        name: "CSS", logo: cssLogo, projects: ["WanderScript", "Portfolio"]
-    },
-    {
-        name: "EJS", logo: ejsLogo, projects: ["WanderScript"]
-    },
-    {
-        name: "Tailwind CSS", logo: tailwindLogo, projects: []
-    },
-    {
-        name: "GSAP", logo: gsapLogo, projects: []
-    },
-    {
-        name: "Framer Motion", logo: framerLogo, projects: ["Portfolio"]
-    },
-    {
-        name: "Bootstrap", logo: bootstrapLogo, projects: []
-    },
-    {
-        name: "Java", logo: javaLogo, projects: []
-    },
-    {
-        name: "C", logo: cLogo, projects: []
-    },
-    {
-        name: "C++", logo: ccLogo, projects: []
-    },
-    {
-        name: "Python", logo: pythonLogo, projects: []
-    },
-    {
-        name: "HTML", logo: htmlLogo, projects: ["WanderScript", "Portfolio"]
-    }
+    { name: "React JS", Icon: FaReact, projects: ["Portfolio"] },
+    { name: "Node JS", Icon: FaNodeJs, projects: ["WanderScript"] },
+    { name: "Express JS", Icon: SiExpress, projects: ["WanderScript"] },
+    { name: "MySQL", Icon: SiMysql, projects: ["WanderScript"] },
+    { name: "MongoDB", Icon: SiMongodb, projects: ["WanderScript"] },
+    { name: "JavaScript", Icon: SiJavascript, projects: ["WanderScript", "Portfolio"] },
+    { name: "CSS", Icon: FaCss3Alt, projects: ["WanderScript", "Portfolio"] },
+    { name: "EJS", Icon: SiEjs, projects: ["WanderScript"] },
+    { name: "Tailwind CSS", Icon: SiTailwindcss, projects: [] },
+    { name: "GSAP", Icon: SiGreensock, projects: [] },
+    { name: "Framer Motion", Icon: SiFramer, projects: ["Portfolio"] },
+    { name: "Figma", Icon: SiFigma, projects: ["WanderScript", "Portfolio"] },
+    { name: "Git", Icon: FaGitAlt, projects: ["WanderScript", "Portfolio"] },
+    { name: "Java", Icon: FaJava, projects: [] },
+    { name: "C", Icon: SiC, projects: [] },
+    { name: "C++", Icon: SiCplusplus, projects: [] },
+    { name: "Python", Icon: FaPython, projects: [] },
+    { name: "Bootstrap", Icon: FaBootstrap, projects: [] },
+    { name: "HTML", Icon: FaHtml5, projects: ["WanderScript", "Portfolio"] }
 ];
 
 export default skills;

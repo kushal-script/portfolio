@@ -1,10 +1,10 @@
 import React from 'react';
-import './cards.css'; 
+import './cards.css';
 
-const SkillsCard = ({ name, logo, projects }) => {
+const SkillsCard = ({ name, Icon, projects }) => {
   return (
     <div className="skills-card">
-      <img src={logo} alt={name} className="skills-logo" />
+      <Icon className="skills-logo" size={40} />
       <p className="skills-name">{name}</p>
       {projects.length > 0 && (
         <div className="skills-projects">

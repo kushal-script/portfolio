@@ -19,9 +19,9 @@ export const info = {
     stats: {
       projectsCompleted: 2,
       workingProjects: 3,
-      skills: 17,
+      skills: 19,
       yearsOfExperience: 0,
       experience: 1,
-      codeCommits: 100
+      codeCommits: 102
     }
   };

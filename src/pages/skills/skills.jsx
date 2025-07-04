@@ -13,7 +13,7 @@ const Skills = ({ onNavClick, ready }) => {
           <SkillsCard
             key={index}
             name={skill.name}
-            logo={skill.logo}
+            Icon={skill.Icon}
             projects={skill.projects}
           />
         ))}
