@@ -5,6 +5,71 @@ import image from '../../assets/images/me.png';
 import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { Navbar } from '../../components/navbar/navbar.jsx';
 
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaPython, FaGitAlt, FaJava, FaJs } from 'react-icons/fa';
+import { SiMongodb, SiMysql } from 'react-icons/si';
+
+const introIcons = [
+    FaReact, FaNodeJs, FaHtml5, FaCss3Alt,
+    FaPython, FaGitAlt, FaJava, FaJs,
+    SiMongodb, SiMysql
+];
+
+const ICONS_PER_500_SQUARE_PX = 80;
+
+const RandomIcons = () => {
+    const [iconPositions, setIconPositions] = useState([]);
+
+    useEffect(() => {
+        const updateIconPositions = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const area = width * height;
+            const iconCount = Math.floor((area / (500 * 500)) * ICONS_PER_500_SQUARE_PX);
+
+            const positions = Array.from({ length: iconCount }, () => ({
+                Icon: introIcons[Math.floor(Math.random() * introIcons.length)],
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                rotate: `${Math.random() * 360}deg`,
+                delay: `${Math.random() * 2}s`,
+            }));
+
+            setIconPositions(positions);
+        };
+
+        updateIconPositions();
+        window.addEventListener('resize', updateIconPositions);
+
+        return () => window.removeEventListener('resize', updateIconPositions);
+    }, []);
+
+    return (
+        <>
+            {iconPositions.map(({ Icon, top, left, rotate, delay }, i) => {
+                const brightness = Math.random(); 
+                const alpha = 0.1 + brightness * 0.3; 
+                const color = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
+
+                return (
+                    <Icon
+                        key={i}
+                        className="intro-bg-icon"
+                        style={{
+                            position: 'absolute',
+                            top,
+                            left,
+                            transform: `rotate(${rotate})`,
+                            fontSize: '1.5rem',
+                            color,
+                            animationDelay: delay,
+                        }}
+                    />
+                );
+            })}
+        </>
+    );
+};
+
 const TypingAnimation = ({ text, onComplete }) => {
     const [displayedText, setDisplayedText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
@@ -94,6 +159,7 @@ const IntroScreen = ({ onComplete }) => {
     const nameTexts = [info.name.full];
     return (
         <div className="intro-screen">
+            <RandomIcons count={30} />
             <h1 className="intro-name">
                 {<TypingAnimation text={nameTexts} onComplete={onComplete} />}
             </h1>

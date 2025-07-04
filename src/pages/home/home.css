@@ -412,3 +412,16 @@ html, body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+.intro-bg-icon {
+    position: absolute;
+    animation: floatIcon 6s ease-in-out infinite;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+@keyframes floatIcon {
+    0% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.2; }
+    50% { transform: translateY(-15px) scale(1.1) rotate(180deg); opacity: 0.3; }
+    100% { transform: translateY(0px) scale(1) rotate(360deg); opacity: 0.2; }
+}
