@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import './hireme.css';
 import { NavbarPages } from '../../components/navbar/navbarPages';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HireMe = ({ onNavClick, ready }) => {
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isPhoneValid, setIsPhoneValid] = useState(true);
+    const [sending, setSending] = useState(false); 
     const [forData, setForData] = useState({
         firstName: '',
         lastName: '',
@@ -31,25 +35,60 @@ const HireMe = ({ onNavClick, ready }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', forData);
-        setForData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            message: ''
-        });
+        setSending(true); 
+
+        const currentTime = new Date().toLocaleString();
+        const templateParams = {
+            name: `${forData.firstName} ${forData.lastName}`,
+            email: forData.email,
+            phone: forData.phone,
+            message: forData.message,
+            title: 'Portfolio Contact Form',
+            time: currentTime
+        };
+
+        emailjs.send(
+            'service_raqgc0b',
+            'template_qpohw7i', 
+            templateParams,
+            'eMtrBKkNgTynMT9DK' 
+        )
+            .then((res) => {
+                console.log('Email successfully sent:', res.text);
+                toast.success('Message sent successfully!');
+                setForData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+            })
+            .catch((err) => {
+                console.error('Email send failed:', err);
+                toast.error('Oops! Something went wrong.');
+            })
+            .finally(() => setSending(false)); 
     };
 
     return (
+        <>
         <div className={`hireme-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
             <NavbarPages onNavClick={onNavClick} />
             <div className="hireme-container">
                 <h2 className="hireme-title">Hire Me</h2>
                 <form className="hireme-form" onSubmit={handleSubmit}>
                     <div className="form-row">
-                        <input type="text" placeholder="First Name" name="firstName" value={forData.firstName} onChange={handleInputChange} required />
-                        <input type="text" placeholder="Last Name" name="lastName" value={forData.lastName} onChange={handleInputChange} required />
+                        <input
+                            type="text"
+                            placeholder="First Name"
+                            name="firstName"
+                            value={forData.firstName}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Last Name"
+                            name="lastName"
+                            value={forData.lastName}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </div>
 
                     <div className="form-row">
@@ -83,13 +122,26 @@ const HireMe = ({ onNavClick, ready }) => {
                             </p>
                         </div>
                     </div>
+
                     <div className="form-message">
-                        <textarea placeholder="Write your message here..." name="message" rows="6" value={forData.message} onChange={handleInputChange} required></textarea>
+                        <textarea
+                            placeholder="Write your message here..."
+                            name="message"
+                            rows="6"
+                            value={forData.message}
+                            onChange={handleInputChange}
+                            required
+                        ></textarea>
                     </div>
-                    <button type="submit" className="send-message-btn">Send Message</button>
+
+                    <button type="submit" disabled={sending} className="send-message-btn">
+                        {sending ? 'Sending...' : 'Send Message'}
+                    </button>
                 </form>
             </div>
         </div>
+        <ToastContainer position="top-center" autoClose={3000} theme="dark" />
+        </>
     );
 };
 
