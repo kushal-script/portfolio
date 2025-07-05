@@ -7,6 +7,7 @@ import wanderScriptImg6 from "../../assets/images/WanderScript/wanderscriptimg6.
 import wanderScriptImg7 from "../../assets/images/WanderScript/wanderscriptimg7.png";
 
 import portfolioImg1 from "../../assets/images/Portfolio/portfolioimg1.png";
+import portfolioImg2 from "../../assets/images/Portfolio/portfolioimg2.png";
 
 const projects = [
     {
@@ -20,7 +21,7 @@ const projects = [
     {
       title: "My Portfolio",
       description: "A visually engaging personal portfolio built with React and Framer Motion. Features smooth page transitions, typing intro animation, interactive stats, and a neon-themed dark mode design.",
-      images: [portfolioImg1],
+      images: [portfolioImg1, portfolioImg2],
       tech: ["React JS", "CSS", "GSAP", "Framer Motion", "Java Script"],
       demoLink: "",
       codeLink: "https://github.com/kushal-script/portfolio.git"
