@@ -1,12 +1,76 @@
-# React + Vite
+##  License
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is licensed under the **MIT License**.
 
-Currently, two official plugins are available:
+# Developer Portfolio - Kushal Sathyanarayan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A modern, responsive developer portfolio built with **React.js**, showcasing my skills, projects, and contact options. Designed with attention to detail, smooth animations, and real-world usability.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Website Link
+
+🔗 [View Portfolio](https://kushal-sathyanarayan.vercel.app)
+
+---
+
+## Features
+
+-  **Framer Motion Animations** – Smooth page transitions and dynamic intro animations.
+-  **Typewriting Intro** – Engaging self-introduction animation on the homepage.
+-  **EmailJS Integration** – Users can send messages via a contact form without backend setup.
+-  **Responsive Design** – Fully optimized for mobile, tablet, and desktop.
+-  **Component-based Structure** – Clean React architecture using reusable components.
+-  **Deployed with Vercel** – Fast global CDN with CI/CD support.
+
+---
+
+##  Technologies Used
+
+| Category      | Tech Stack                         |
+|---------------|-------------------------------------|
+| Frontend      | React.js, Framer Motion, CSS        |
+| Backend       | Node.js (for dev utilities)         |
+| Deployment    | Vercel                              |
+| Mailing       | EmailJS                             |
+
+---
+
+##  Project Structure
+
+portfolio/
+├── dist/                      # Production build output
+├── node_modules/              # Dependencies
+├── public/                    # Static files (if used)
+├── src/                       # Source code
+│   ├── assets/
+│   │   ├── docs/              # Documentation images
+│   │   ├── icons/             # Icon sets for sections like projects, skills, etc.
+│   │   └── images/            # User profile image and other images
+│   ├── components/            # Reusable UI components
+│   │   ├── cards/             # Cards for achievements, experience, projects, skills
+│   │   └── loaders/           # Section-specific loaders
+│   │   └── navbar/            # Navigation bar component
+│   ├── pages/                 # Main app sections
+│   │   ├── achievements/      # Achievements page
+│   │   ├── experience/        # Experience page
+│   │   ├── hireme/            # Hire Me form page
+│   │   ├── home/              # Home/Intro page
+│   │   ├── projects/          # Projects page
+│   │   └── skills/            # Skills page
+│   ├── App.css                # App.jsx styling
+│   ├── App.jsx                # Main App component
+│   ├── main.jsx               # App entry point
+├── .gitignore
+├── index.html
+├── LICENSE                    # MIT License file
+├── package.json
+├── vite.config.js            # Vite build config
+├── README.md                 # Project readme
+
+---
+
+##  Contact
+
+- [LinkedIn](https://www.linkedin.com/in/kushal-s-rv-university/)
+- [Email](mailto:kushalsathyaarayan@gmail.com)
