@@ -2,12 +2,12 @@ import React from 'react';
 import SkillsCard from '../../components/cards/skillCards.jsx';
 import skills from './skills.js';
 import './skills.css';
-import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 
 const Skills = ({ onNavClick, ready }) => {
   return (
     <div className={`skills-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
-      <NavbarPages onNavClick={onNavClick} />
+      <Navbar onNavClick={onNavClick} />
       <div className="skills-container">
         {skills.map((skill, index) => (
           <SkillsCard

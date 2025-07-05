@@ -2,12 +2,12 @@ import React from 'react';
 import ProjectCard from '../../components/cards/projectCards.jsx';
 import projects from './projects.js';
 import './projects.css';
-import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 
 const Projects = ({ onNavClick, ready }) => {
   return (
     <div className={`projects-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
-      <NavbarPages onNavClick={onNavClick} />
+      <Navbar onNavClick={onNavClick} />
       <div className="projects-container">
         {projects.map((project, index) => (
           <ProjectCard

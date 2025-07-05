@@ -2,12 +2,12 @@ import React from 'react';
 import { AchievementCard } from '../../components/cards/achieveCards.jsx';
 import { achievementsInfo } from './achievements.js';
 import './achievements.css';
-import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 
 const Achievements = ({ onNavClick, ready }) => {
   return (
     <div className={`achievements-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
-      <NavbarPages onNavClick={onNavClick} />
+      <Navbar onNavClick={onNavClick} />
       <div className="achievements-container">
         {achievementsInfo.achievements.map((achievement, index) => (
           <AchievementCard

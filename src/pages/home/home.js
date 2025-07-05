@@ -22,6 +22,6 @@ export const info = {
       skills: 19,
       yearsOfExperience: 0,
       experience: 1,
-      codeCommits: 102
+      codeCommits: 106
     }
   };

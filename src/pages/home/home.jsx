@@ -189,8 +189,9 @@ const Home = ({ onNavClick, isInitialLoad }) => {
     }, []);
 
     return (
+        <>
+        <Navbar onNavClick={onNavClick} />
         <div className="home-wrapper">
-            <Navbar onNavClick={onNavClick} />
 
             {isInitialLoad && showIntro && (
                 <div className={`intro-overlay ${introMinimizing ? 'shrink-right' : ''} ${introHidden ? 'hidden' : ''}`}>
@@ -233,7 +234,7 @@ const Home = ({ onNavClick, isInitialLoad }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div></>
     );
 };
 

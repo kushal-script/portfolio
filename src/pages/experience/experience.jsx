@@ -2,12 +2,12 @@ import React from 'react';
 import ExperienceCard from '../../components/cards/experienceCards.jsx';
 import experiences from './experience.js';
 import './experience.css';
-import { NavbarPages } from '../../components/navbar/navbarPages.jsx';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 
 const Experience = ({ onNavClick, ready }) => {
   return (
     <div className={`experience-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
-      <NavbarPages onNavClick={onNavClick} />
+      <Navbar onNavClick={onNavClick} />
       <div className="experience-container">
         {experiences.map((exp, index) => (
           <ExperienceCard

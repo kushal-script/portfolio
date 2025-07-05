@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './hireme.css';
-import { NavbarPages } from '../../components/navbar/navbarPages';
+import { Navbar } from '../../components/navbar/navbar.jsx';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,7 +68,7 @@ const HireMe = ({ onNavClick, ready }) => {
     return (
         <>
         <div className={`hireme-page-wrapper ${ready ? 'visible' : 'hidden'}`}>
-            <NavbarPages onNavClick={onNavClick} />
+            <Navbar onNavClick={onNavClick} />
             <div className="hireme-container">
                 <h2 className="hireme-title">Hire Me</h2>
                 <form className="hireme-form" onSubmit={handleSubmit}>
