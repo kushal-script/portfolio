@@ -924,9 +924,6 @@ html, body {
 
 /* Target: standard desktops (1280px and above) */
 @media (min-width: 1280px) {
-    html, body{
-        overflow-y: hidden;
-    }
     .home-container {
         flex-direction: row;
     }
