@@ -46,8 +46,8 @@ const RandomIcons = () => {
     return (
         <>
             {iconPositions.map(({ Icon, top, left, rotate, delay }, i) => {
-                const brightness = Math.random(); 
-                const alpha = 0.1 + brightness * 0.3; 
+                const brightness = Math.random();
+                const alpha = 0.1 + brightness * 0.3;
                 const color = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
 
                 return (
@@ -190,51 +190,51 @@ const Home = ({ onNavClick, isInitialLoad }) => {
 
     return (
         <>
-        <Navbar onNavClick={onNavClick} />
-        <div className="home-wrapper">
+            <Navbar onNavClick={onNavClick} />
+            <div className="home-wrapper">
 
-            {isInitialLoad && showIntro && (
-                <div className={`intro-overlay ${introMinimizing ? 'shrink-right' : ''} ${introHidden ? 'hidden' : ''}`}>
-                    <IntroScreen onComplete={handleIntroComplete} />
-                </div>
-            )}
-
-            <div className="home-container">
-                <div className="image-section">
-                    <div className="image-border-wrapper">
-                        <img src={image} alt="Kushal Sathyanarayan" className="profile-image" />
+                {isInitialLoad && showIntro && (
+                    <div className={`intro-overlay ${introMinimizing ? 'shrink-right' : ''} ${introHidden ? 'hidden' : ''}`}>
+                        <IntroScreen onComplete={handleIntroComplete} />
                     </div>
-                    <p className="about-me-text-image-section">
-                        {info.description.about}
-                    </p>
-                </div>
+                )}
 
-                <div className="description-section">
-                    <p className="greeting">Hello, I am</p>
-                    <h1 className="name">{info.name.full}</h1>
-                    <p className="attribute">{info.description.attribute}</p>
-                    <p className="major">{info.description.major} <span className="tag">major</span> </p>
-                    <p className="minor">{info.description.minor} <span className="tag">minor</span> </p>
-
-                    <p className="find-me">Find Me on</p>
-                    <div className="social-links">
-                        {info.social.github && <a href={info.social.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>}
-                        {info.social.linkedin && <a href={info.social.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>}
-                        {info.social.instagram && <a href={info.social.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>}
-                        {info.social.email && <a href={`mailto:${info.social.email}`} title="Email Me"><FaEnvelope /></a>}
+                <div className="home-container">
+                    <div className="image-section">
+                        <div className="image-border-wrapper">
+                            <img src={image} alt="Kushal Sathyanarayan" className="profile-image" />
+                        </div>
+                        <p className="about-me-text-image-section">
+                            {info.description.about}
+                        </p>
                     </div>
 
-                    <div className="stats-container">
-                        <StatItem label="Completed Projects" targetNumber={info.stats.projectsCompleted} delay={0} start={startStats} />
-                        <StatItem label="Projects Working On" targetNumber={info.stats.workingProjects} delay={200} start={startStats} />
-                        <StatItem label="Proficient Technologies" targetNumber={info.stats.skills} delay={400} start={startStats} />
-                        <StatItem label="Years of Experience" targetNumber={info.stats.yearsOfExperience} delay={600} start={startStats} />
-                        <StatItem label="Experience" targetNumber={info.stats.experience} delay={800} start={startStats} />
-                        <StatItem label="Code Commits" targetNumber={info.stats.codeCommits} delay={1000} start={startStats} />
+                    <div className="description-section">
+                        <p className="greeting">Hello, I am</p>
+                        <h1 className="name">{info.name.full}</h1>
+                        <p className="attribute">{info.description.attribute}</p>
+                        <p className="major">{info.description.major} <span className="tag">major</span> </p>
+                        <p className="minor">{info.description.minor} <span className="tag">minor</span> </p>
+
+                        <p className="find-me">Find Me on</p>
+                        <div className="social-links">
+                            {info.social.github && <a href={info.social.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>}
+                            {info.social.linkedin && <a href={info.social.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>}
+                            {info.social.instagram && <a href={info.social.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>}
+                            {info.social.email && <a href={`mailto:${info.social.email}`} title="Email Me"><FaEnvelope /></a>}
+                        </div>
+
+                        <div className="stats-container">
+                            <StatItem label="Projects Completed" targetNumber={info.stats.projectsCompleted} delay={0} start={startStats} />
+                            <StatItem label="Projects Working On" targetNumber={info.stats.workingProjects} delay={200} start={startStats} />
+                            <StatItem label="ML Models Trained/Deployed" targetNumber={info.stats.skills} delay={400} start={startStats} />
+                            <StatItem label="Internships" targetNumber={info.stats.internships} delay={600} start={startStats} />
+                            <StatItem label="Successful Open Source PRs" targetNumber={info.stats.experience} delay={800} start={startStats} />
+                            <StatItem label="Code Commits" targetNumber={info.stats.codeCommits} delay={1000} start={startStats} />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div></>
+            </div></>
     );
 };
 

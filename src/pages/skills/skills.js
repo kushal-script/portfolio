@@ -1,12 +1,15 @@
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, FaJava, FaPython } from "react-icons/fa";
-import { SiExpress, SiMysql, SiMongodb, SiJavascript, SiEjs, SiTailwindcss, SiGreensock, SiFramer, SiC, SiCplusplus, SiFigma } from "react-icons/si";
+import { FaReact, FaNodeJs, FaLink, FaCss3Alt, FaGitAlt, FaJava, FaPython } from "react-icons/fa";
+import { SiExpress, SiMysql, SiMongodb, SiJavascript, SiEjs, SiTailwindcss, SiGreensock, SiFramer, SiC, SiCplusplus, SiFigma, SiSwift, SiTensorflow } from "react-icons/si";
 
 const skills = [
     { name: "React JS", Icon: FaReact, projects: ["Portfolio"] },
     { name: "Node JS", Icon: FaNodeJs, projects: ["WanderScript"] },
+    { name: "Swift", Icon: SiSwift, projects: [] },
+    { name: "TensorFlow", Icon: SiTensorflow, projects: [] },
+    { name: "LangChain", Icon: FaLink, projects: [] },
     { name: "Express JS", Icon: SiExpress, projects: ["WanderScript"] },
-    { name: "MySQL", Icon: SiMysql, projects: ["WanderScript"] },
     { name: "MongoDB", Icon: SiMongodb, projects: ["WanderScript"] },
+    { name: "MySQL", Icon: SiMysql, projects: ["WanderScript"] },
     { name: "JavaScript", Icon: SiJavascript, projects: ["WanderScript", "Portfolio"] },
     { name: "CSS", Icon: FaCss3Alt, projects: ["WanderScript", "Portfolio"] },
     { name: "EJS", Icon: SiEjs, projects: ["WanderScript"] },
@@ -18,9 +21,7 @@ const skills = [
     { name: "Java", Icon: FaJava, projects: [] },
     { name: "C", Icon: SiC, projects: [] },
     { name: "C++", Icon: SiCplusplus, projects: [] },
-    { name: "Python", Icon: FaPython, projects: [] },
-    { name: "Bootstrap", Icon: FaBootstrap, projects: [] },
-    { name: "HTML", Icon: FaHtml5, projects: ["WanderScript", "Portfolio"] }
+    { name: "Python", Icon: FaPython, projects: [] }
 ];
 
 export default skills;
